@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ModelService } from './addModel.service';
-import { Model } from './interfaces/model.interfaces';
+import { Model } from './interfaces/Models/model.interfaces';
 @Controller('models')
 export class ModelsController {
   constructor(private modelService: ModelService) {}

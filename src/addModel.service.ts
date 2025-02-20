@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from './interfaces/model.interfaces';
+import { Model } from './interfaces/Models/model.interfaces';
 @Injectable()
 export class ModelService {
   private readonly models: Model[] = [];
