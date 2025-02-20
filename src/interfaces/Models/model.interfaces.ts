@@ -2,7 +2,7 @@ import {
   RenderEngine,
   Materials,
   Styles,
-  Platforms,
+  Platforms
 } from 'src/types/Model.type';
 export interface Model {
   name: string;
@@ -11,7 +11,7 @@ export interface Model {
   platform: Platforms[];
   polygonCount: number;
   style: Styles;
-  materials: Materials[Materials];
+  materials: Materials[];
   Manufacturer: string;
   size: number;
   isAllowedToPublish: boolean;

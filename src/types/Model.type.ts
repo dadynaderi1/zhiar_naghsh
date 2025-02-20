@@ -1,43 +1,43 @@
-export const enum RenderEngine {
-  Vray,
-  Corona,
-  Octane,
-  Redshift,
-  Arnold,
-  MentalRay,
-  BlenderCycles,
-  BlenderEvee
+export enum RenderEngine {
+  VRAY = 'Vray',
+  CORONA = 'Corona',
+  OCTANE = 'Octane',
+  REDSHIFT = 'Redshift',
+  ARNOLD = 'Arnold',
+  MENTALRAY = 'MentalRay',
+  BLENDERCYCLES = 'Blender Cycles',
+  BLENDEREVEE = 'Blender Evee'
 }
-export const enum Materials {
-  Glass,
-  Wood,
-  Metal,
-  Plastic,
-  Paper,
-  Brick,
-  Rock,
-  Ceramic,
-  Ground,
-  WoodFloor,
-  Leather,
-  Snow,
-  Fabric,
-  Gravel,
-  Asphalt,
-  Carpet,
-  Concrete,
-  Grass,
-  Marble,
-  Parket,
+export enum Materials {
+  GLASS = 'Glass',
+  WOOD = 'Wood',
+  METAL = 'Metal',
+  PLASTIC = 'Plastic',
+  PAPER = 'Paper',
+  BRICK = 'Brick',
+  ROCK = 'Rock',
+  CERAMIC = 'Ceramic',
+  GROUND = 'Ground',
+  WOODFLOOR = 'Wood Floor',
+  LEATHER = 'Leather',
+  FABRIC = 'Fabric',
+  CARPET = 'Carpet',
+  CONCRETE = 'Concrete',
+  MARBLE = 'Marble',
+  ASPHALT = 'Asphalt',
+  GRAVEL = 'Gravel',
+  GRASS = 'Grass',
+  SNOW = 'Snow',
+  PARKET = 'Parket'
 }
-export const enum Styles {
-  Modern,
-  Classic,
-  NeoClassic,
+export enum Styles {
+  MODERN = 'Modern',
+  CLASSIC = 'Classic',
+  NEOCLASSIC = 'Neo Classic'
 }
-export const enum Platforms {
-  _3DSMAX,
-  Blender,
-  SketchUp,
-  Rhino,
+export enum Platforms {
+  MAX = '3dsMax',
+  Blender = 'Blender',
+  SketchUp = 'Sketch Up',
+  Rhino = 'Rhino'
 }
