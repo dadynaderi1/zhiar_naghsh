@@ -7,8 +7,8 @@ export class Manufacturer {
   id: number;
   @Column({ type: 'string', nullable: false })
   name: string;
-  @Column({type:'boolean',default:false})
+  @Column({ type: 'boolean', default: false })
   isPartner: boolean;
-  @OneToMany(()=> Model,(models)=>models.manufacturer)
-  models:Model[];
+  @OneToMany(() => Model, (models) => models.manufacturer)
+  models: Model[];
 }
