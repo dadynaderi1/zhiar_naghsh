@@ -23,6 +23,6 @@ export class Model {
   isAllowedToPublish: boolean;
   @Column({ type: 'boolean', default: false })
   isTextured: boolean;
-  @ManyToOne(()=> Manufacturer,(manufacturer)=>manufacturer.models);
-  manufacturer: Manufacturer;
+  @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.models)
+  manufacturer: Manufacturer[];
 }
