@@ -23,6 +23,10 @@ export class Model {
   isAllowedToPublish: boolean;
   @Column({ type: 'boolean', default: false })
   isTextured: boolean;
+  @Column({ type: 'int', nullable: false })
+  categoryId: number;
+  @Column({ type: 'int', nullable: true })
+  discountId: number;
   @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.models, {
     nullable: true
   })
