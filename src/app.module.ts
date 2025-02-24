@@ -4,7 +4,12 @@ import { AppService } from './app.service';
 import { ModelModule } from './model/model.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from 'typeorm.config';
+import { typeOrmConfig } from './config/typeorm.module.config';
+import { Model } from './entities/Model.entity';
+import { Category } from './entities/Category.entity';
+import { Manufacturer } from './entities/Manufacturer.entity';
+import { Discount } from './entities/Discount.entity';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -13,10 +18,13 @@ import { typeOrmConfig } from 'typeorm.config';
       isGlobal: true
     }),
     TypeOrmModule.forRootAsync({
-      inject:[ConfigService],
-      useFactory: typeOrmConfig
+      inject: [ConfigService],
+      useFactory: typeOrmConfig,
+      imports: [ConfigModule]
     }),
-    ModelModule],
+    ModelModule,
+    CategoryModule,
+  ],
   controllers: [AppController],
   providers: [AppService]
 })
