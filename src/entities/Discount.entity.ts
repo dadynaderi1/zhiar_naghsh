@@ -1,5 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { IsNotEmpty, IsNumber, IsDate, Min, Max, IsString, Length } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsDate,
+  Min,
+  Max,
+  IsString,
+  Length
+} from 'class-validator';
 import { Model } from './Model.entity';
 
 @Entity()
