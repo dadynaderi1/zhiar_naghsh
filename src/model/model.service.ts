@@ -1,36 +1,55 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Model } from 'src/entities/Model.entity';
-
+import { CreateModelDto } from '../dtos/model/create-model.dto';
+import { UpdateModelDto } from '../dtos/model/update-model.dto';
 
 @Injectable()
 export class ModelService {
-  private models: Model[] = [];
-  private idCounter = 0;
+  constructor(
+    @InjectRepository(Model)
+    private modelRepository: Repository<Model>
+  ) {}
+
+  async create(createModelDto: CreateModelDto): Promise<Model> {
+    const model = this.modelRepository.create({
+      ...createModelDto,
+      creationDate: new Date(),
+      publishDate: null
+    });
+    return await this.modelRepository.save(model);
+  }
 
   async findAll(): Promise<Model[]> {
-    return this.models;
+    return await this.modelRepository.find({
+      relations: ['category', 'manufacturer', 'discount']
+    });
   }
+
   async findOne(id: number): Promise<Model> {
-    const model = this.models.find((model) => model.id === id);
+    const model = await this.modelRepository.findOne({
+      where: { id },
+      relations: ['category', 'manufacturer', 'discount']
+    });
+
     if (!model) {
-      throw new Error(`Model with id ${id} not found`);
+      throw new NotFoundException(`Model with ID ${id} not found`);
     }
+
     return model;
   }
-  create(model: Model): Model {
-    model.id = this.idCounter++;
-    this.models.push(model);
-    return model;
+
+  async update(id: number, updateModelDto: UpdateModelDto): Promise<Model> {
+    const model = await this.findOne(id);
+    Object.assign(model, updateModelDto);
+    return await this.modelRepository.save(model);
   }
-  async update(id: number, updatedModel: Partial<Model>): Promise<Model | null> {
-    const model = this.findOne(id);
-    if (!model) {
-      return null;
+
+  async delete(id: number): Promise<void> {
+    const result = await this.modelRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Model with ID ${id} not found`);
     }
-    Object.assign(model, updatedModel);
-    return model;
-  }
- async delete(id: number): Promise<void> {
-    this.models = this.models.filter((model) => model.id !== id);
   }
 }

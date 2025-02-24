@@ -1,4 +1,4 @@
-import { Materials, Platforms, Styles } from 'src/types/Model.type';
+import { Materials, Platforms, Styles } from '../types/Model.type';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Manufacturer } from './Manufacturer.entity';
 import { Discount } from './Discount.entity';
