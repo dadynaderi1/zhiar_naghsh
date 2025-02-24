@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'src/entities/Model.entity';
 
+
 @Injectable()
 export class ModelService {
   private models: Model[] = [];
   private idCounter = 0;
 
-  findAll(): Model[] {
+  async findAll(): Promise<Model[]> {
     return this.models;
   }
-  findOne(id: number): Model {
+  async findOne(id: number): Promise<Model> {
     const model = this.models.find((model) => model.id === id);
     if (!model) {
       throw new Error(`Model with id ${id} not found`);
@@ -21,7 +22,7 @@ export class ModelService {
     this.models.push(model);
     return model;
   }
-  update(id: number, updatedModel: Partial<Model>): Model | null {
+  async update(id: number, updatedModel: Partial<Model>): Promise<Model | null> {
     const model = this.findOne(id);
     if (!model) {
       return null;
@@ -29,7 +30,7 @@ export class ModelService {
     Object.assign(model, updatedModel);
     return model;
   }
-  delete(id: number): void {
+ async delete(id: number): Promise<void> {
     this.models = this.models.filter((model) => model.id !== id);
   }
 }

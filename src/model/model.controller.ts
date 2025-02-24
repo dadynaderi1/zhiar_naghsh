@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Post,
   Put
@@ -13,25 +14,29 @@ import { Model } from 'src/entities/Model.entity';
 @Controller('model')
 export class ModelController {
   constructor(private readonly modelService: ModelService) {}
-
+  @HttpCode(200)
   @Get()
-  findAll(): Model[] {
+  async findAll(): Promise<Model[]> {
     return this.modelService.findAll();
   }
+  @HttpCode(200)
   @Get(':id')
-  findOne(@Param('id') id: string): Model {
+ async findOne(@Param('id') id: string): Promise<Model> {
     return this.modelService.findOne(+id);
   }
+  @HttpCode(201)
   @Post()
-  create(@Body() model: Model): Model {
+  async create(@Body() model: Model): Promise<Model> {
     return this.modelService.create(model);
   }
+  @HttpCode(200)
   @Put(':id')
-  update(@Param('id') id: number, @Body() updatedUser: Partial<Model>): Model {
+  async update(@Param('id') id: number, @Body() updatedUser: Partial<Model>): Promise<Model> {
     return this.update(+id, updatedUser);
   }
+  @HttpCode(204)
   @Delete(':id')
-  delete(@Param('id') id: number): void {
+  async delete(@Param('id') id: number): Promise<void> {
     return this.delete(id);
   }
 }
