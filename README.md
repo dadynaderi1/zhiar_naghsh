@@ -72,9 +72,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Your Name - [@yourusername](https://twitter.com/yourusername)
+Developer - [@dadynaderi1](https://github.com/dadynaderi1)
 
-Project Link: [https://github.com/yourusername/zhiarnaghsh](https://github.com/yourusername/zhiarnaghsh)
+Project Link: [https://github.com/dadynaderi1/zhiar_naghsh](https://github.com/dadynaderi1/zhiar_naghsh)
 
 <!-- MARKDOWN LINKS & BADGES -->
 [nestjs-shield]: https://img.shields.io/badge/NestJS-EA2845?style=for-the-badge&logo=nestjs&logoColor=white
