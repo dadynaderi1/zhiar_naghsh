@@ -46,13 +46,17 @@ export class ModelController {
       if (error instanceof BadRequestException) {
         throw error;
       }
-      
-      if (error.code === '23505') { // Unique constraint violation
+
+      if (error.code === '23505') {
+        // Unique constraint violation
         throw new BadRequestException('A model with this name already exists');
       }
-      
-      if (error.code === '23503') { // Foreign key violation
-        throw new BadRequestException('Referenced category, manufacturer or discount does not exist');
+
+      if (error.code === '23503') {
+        // Foreign key violation
+        throw new BadRequestException(
+          'Referenced category, manufacturer or discount does not exist'
+        );
       }
 
       throw new InternalServerErrorException('Failed to create model');
@@ -104,7 +108,9 @@ export class ModelController {
         throw new BadRequestException('A model with this name already exists');
       }
       if (error.code === '23503') {
-        throw new BadRequestException('Referenced category, manufacturer or discount does not exist');
+        throw new BadRequestException(
+          'Referenced category, manufacturer or discount does not exist'
+        );
       }
       throw new InternalServerErrorException('Failed to update model');
     }

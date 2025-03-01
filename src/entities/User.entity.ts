@@ -1,11 +1,22 @@
-import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 import {
-  IsEmail,
-  IsNotEmpty,
-  MinLength,
-  IsDate,
-  IsEnum
-} from 'class-validator';
+  Column,
+  PrimaryGeneratedColumn,
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany
+} from 'typeorm';
+import { IsEmail, IsNotEmpty, MinLength, IsDate } from 'class-validator';
+import { Exclude } from 'class-transformer';
+import { Model } from './Model.entity';
+
+export enum UserRole {
+  OWNER = 'owner',
+  CONTENT_ADMIN = 'content_admin',
+  VALIDATOR_ADMIN = 'validator_admin',
+  ARTIST = 'artist',
+  MANUFACTURER = 'manufacturer'
+}
 
 @Entity()
 export class User {
@@ -33,26 +44,31 @@ export class User {
   @Column()
   @IsNotEmpty()
   @MinLength(8)
+  @Exclude({ toPlainOnly: true })
   password: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: UserRole, default: UserRole.ARTIST })
   @IsNotEmpty()
-  @IsEnum(['admin', 'user'])
-  role: string;
+  role: UserRole;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ default: false })
+  isActive: boolean;
+
+  @CreateDateColumn()
   @IsDate()
   created_at: Date;
 
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP'
-  })
+  @Column({ nullable: true })
+  companyName: string;
+
+  @UpdateDateColumn()
   @IsDate()
   updated_at: Date;
 
   @Column({ type: 'timestamp', nullable: true })
   @IsDate()
   deleted_at: Date;
+
+  @OneToMany(() => Model, (model) => model.creator, { nullable: true })
+  models: Model[];
 }

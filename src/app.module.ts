@@ -10,6 +10,8 @@ import { Category } from './entities/Category.entity';
 import { Manufacturer } from './entities/Manufacturer.entity';
 import { Discount } from './entities/Discount.entity';
 import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
+import { User } from './entities/User.entity';
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ import { CategoryModule } from './category/category.module';
     }),
     ModelModule,
     CategoryModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]

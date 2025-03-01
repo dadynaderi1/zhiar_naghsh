@@ -6,6 +6,7 @@ import { Model } from '../entities/Model.entity';
 import { Category } from '../entities/Category.entity';
 import { Manufacturer } from '../entities/Manufacturer.entity';
 import { Discount } from '../entities/Discount.entity';
+import { User } from '../entities/User.entity';
 
 config();
 const configService = new ConfigService();
@@ -17,7 +18,7 @@ const dataSource = new DataSource({
   username: configService.get('DB_USER'),
   password: configService.get('DB_PASS'),
   database: configService.get('DB_NAME'),
-  entities: [Model, Category, Manufacturer, Discount],
+  entities: [Model, Category, Manufacturer, Discount, User],
   migrations: [join(__dirname, '../migrations/*.{ts,js}')],
   logging: true,
 });

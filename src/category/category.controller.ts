@@ -19,15 +19,21 @@ import { UpdateCategoryDto } from '../dtos/category/update-category.dto';
 import { CategoryDto } from '../dtos/category/category.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { Category } from 'src/entities/Category.entity';
+// Authentication
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('categories')
+@UseGuards(JwtAuthGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-@UseInterceptors(ValidationPipe)
-  async create(@Body() createCategoryDto: CreateCategoryDto): Promise<CategoryDto> {
+  @UseInterceptors(ValidationPipe)
+  async create(
+    @Body() createCategoryDto: CreateCategoryDto
+  ): Promise<CategoryDto> {
     try {
       const category = await this.categoryService.create(createCategoryDto);
       return this.mapToDto(category);
@@ -43,7 +49,7 @@ export class CategoryController {
   async findAll(): Promise<CategoryDto[]> {
     try {
       const categories = await this.categoryService.findAll();
-      return categories.map(category => this.mapToDto(category));
+      return categories.map((category) => this.mapToDto(category));
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch categories');
     }
@@ -63,7 +69,7 @@ export class CategoryController {
   }
 
   @Patch(':id')
-@UseInterceptors(ValidationPipe)
+  @UseInterceptors(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCategoryDto: UpdateCategoryDto

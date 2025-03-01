@@ -1,6 +1,7 @@
 import { Materials, Platforms, Styles } from '../types/Model.type';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Manufacturer } from './Manufacturer.entity';
+import { User } from './User.entity';
 import { Discount } from './Discount.entity';
 import {
   IsNotEmpty,
@@ -10,7 +11,8 @@ import {
   IsBoolean,
   Min,
   ArrayMinSize,
-  IsArray
+  IsArray,
+  IsOptional
 } from 'class-validator';
 import { Category } from './Category.entity';
 
@@ -87,4 +89,16 @@ export class Model {
     onDelete: 'RESTRICT'
   })
   category: Category;
+  // Add this import at the top of the file
+  
+  @ManyToOne(() => User, (user) => user.models, {
+    nullable: true,
+    onDelete: 'SET NULL'
+  })
+  creator: User;
+
+  @Column({ type: 'int', nullable: true })
+  @IsInt()
+  @IsOptional()
+  creatorId: number;
 }
