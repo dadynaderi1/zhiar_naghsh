@@ -6,7 +6,7 @@ import {
   IsString,
   MinLength
 } from 'class-validator';
-import { UserRole } from 'src/entities/User.entity';
+import { UserRole } from '@zhiarnaghsh/shared';
 
 export class RegisterDto {
   @IsNotEmpty()
