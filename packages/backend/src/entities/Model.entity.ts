@@ -101,4 +101,12 @@ export class Model {
   @IsInt()
   @IsOptional()
   creatorId: number;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  description: string;
+
+  @Column({ type: 'integer' , nullable:true})
+  @IsInt()
+  @Min(0)
+  price: number;
 }
