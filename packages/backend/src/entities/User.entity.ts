@@ -9,14 +9,7 @@ import {
 import { IsEmail, IsNotEmpty, MinLength, IsDate } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { Model } from './Model.entity';
-
-export enum UserRole {
-  OWNER = 'owner',
-  CONTENT_ADMIN = 'content_admin',
-  VALIDATOR_ADMIN = 'validator_admin',
-  ARTIST = 'artist',
-  MANUFACTURER = 'manufacturer'
-}
+import { UserRole } from '@zhiarnaghsh/shared';
 
 @Entity()
 export class User {
