@@ -1,9 +1,9 @@
 export enum UserRole {
-  SUPER_ADMIN = 'super_admin',
-  CONTENT_ADMIN = 'content_admin',
-  VALIDATOR_ADMIN = 'validator_admin',
-  ARTIST = 'artist',
-  MANUFACTURER = 'manufacturer'
+  ADMIN = 'admin',
+  USER = 'user',
+  OWNER = 'owner',  // Add this missing role
+  MANUFACTURER = 'manufacturer',
+  ARTIST = 'artist'
 }
 
 export interface User {
