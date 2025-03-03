@@ -2,6 +2,16 @@
 
 Zhiar Naghsh is a sophisticated platform for 3D model management, sharing, and discovery. Our platform connects creators, manufacturers, and enthusiasts in a seamless ecosystem for 3D content.
 
+## 📑 Table of Contents
+
+- [Features](#-features)
+- [Technology Stack](#️-technology-stack)
+- [Getting Started](#-getting-started)
+- [Development](#-development)
+- [Documentation](#-documentation)
+- [Contributing](#-contributing)
+- [License](#-license)
+
 ## 🚀 Features
 
 - Seamless integration with different app
