@@ -11,7 +11,10 @@
     "start:dev": "nest start --watch --port 3002",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/typeorm.migration.config.ts src/migrations/init",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/typeorm.migration.config.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/typeorm.migration.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
